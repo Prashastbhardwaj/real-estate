@@ -23,7 +23,7 @@ export const signup = async (req, res, next) => {
 
       }
     }else{      
-      error.message=  'Something Went Wrong'
+      // error.message=  'Something Went Wrong'
 
     }
 
