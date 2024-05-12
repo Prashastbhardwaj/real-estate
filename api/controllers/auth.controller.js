@@ -11,6 +11,22 @@ export const signup = async (req, res, next) => {
     await newUser.save();
     res.status(201).json('User created successfully!');
   } catch (error) {
+    console.log(error)
+    if(error.code == 11000){
+      if(Object.keys(error.keyValue)[0]== "username"){
+        error.message =  'Username should be unique!'
+
+      }else if(Object.keys(error.keyValue)[0]== "email"){
+      error.message=  'Email should be unique!'
+      }else{
+        error.message=  'Something Went Wrong'
+
+      }
+    }else{      
+      error.message=  'Something Went Wrong'
+
+    }
+
     next(error);
   }
 };
